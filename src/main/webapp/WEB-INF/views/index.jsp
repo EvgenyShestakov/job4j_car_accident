@@ -21,11 +21,42 @@
 </head>
 <body>
 <div class="container pt-3">
-<ul>
-    <c:forEach items="${users}" var="string">
-        <li> Hello : ${string}</li>
-    </c:forEach>
-</ul>
+    <div class="row">
+        <div class="card" style="width: 100%">
+            <div class="card-header">
+                Accident
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Номер</th>
+                        <th scope="col">Имя</th>
+                        <th scope="col">Описание</th>
+                        <th scope="col">Адрес</th>
+                    </tr>
+                    <tbody>
+                    <c:forEach items="${accidents}" var="value">
+                        <tr>
+                            <td>
+                                <c:out value="${value.id}"/>
+                            </td>
+                            <td>
+                                <c:out value="${value.name}"/>
+                            </td>
+                            <td>
+                                <c:out value="${value.text}"/>
+                            </td>
+                            <td>
+                                <c:out value="${value.address}"/>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
