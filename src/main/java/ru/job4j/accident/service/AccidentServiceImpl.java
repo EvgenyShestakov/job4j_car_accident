@@ -23,4 +23,9 @@ public class AccidentServiceImpl implements AccidentService {
     public void create(Accident accident) {
         repository.create(accident);
     }
+
+    @Override
+    public Accident findById(int id) {
+        return repository.findById(id);
+    }
 }

@@ -39,19 +39,19 @@
                         <th scope="col">Адрес</th>
                     </tr>
                     <tbody>
-                    <c:forEach items="${accidents}" var="value">
+                    <c:forEach items="${accidents}" var="accident">
                         <tr>
                             <td>
-                                <a href='<c:url value="/edit?id=${value.id}"/>'>
+                                <a href='<c:url value="/edit?id=${accident.id}"/>'>
                                     <i class="fa fa-edit mr-3"></i>
                                 </a>
-                                <c:out value="${value.name}"/>
+                                 <c:out value="${accident.name}"/>
                             </td>
                             <td>
-                                <c:out value="${value.text}"/>
+                                <c:out value="${accident.text}"/>
                             </td>
                             <td>
-                                <c:out value="${value.address}"/>
+                                <c:out value="${accident.address}"/>
                             </td>
                         </tr>
                     </c:forEach>
