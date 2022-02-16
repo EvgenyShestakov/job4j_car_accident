@@ -6,4 +6,6 @@ import java.util.Collection;
 
 public interface AccidentRepository {
     Collection<Accident> findAll();
+
+    void create(Accident accident);
 }

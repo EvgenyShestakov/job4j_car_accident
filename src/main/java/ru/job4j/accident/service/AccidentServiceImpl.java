@@ -8,7 +8,7 @@ import java.util.Collection;
 
 @Service
 public class AccidentServiceImpl implements AccidentService {
-    private AccidentRepository repository;
+    private final AccidentRepository repository;
 
     public AccidentServiceImpl(AccidentRepository repository) {
         this.repository = repository;
@@ -17,5 +17,10 @@ public class AccidentServiceImpl implements AccidentService {
     @Override
     public Collection<Accident> findAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public void create(Accident accident) {
+        repository.create(accident);
     }
 }
