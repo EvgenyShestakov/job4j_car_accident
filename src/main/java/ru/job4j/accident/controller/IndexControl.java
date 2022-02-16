@@ -7,7 +7,7 @@ import ru.job4j.accident.service.AccidentService;
 
 @Controller
 public class IndexControl {
-    private AccidentService service;
+    private final AccidentService service;
 
     public IndexControl(AccidentService service) {
         this.service = service;
@@ -15,7 +15,7 @@ public class IndexControl {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("accidents", service.findAll());
+        model.addAttribute("accidents", service.findAllAccidents());
         return "index";
     }
 }

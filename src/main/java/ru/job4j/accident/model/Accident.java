@@ -11,14 +11,17 @@ public class Accident {
 
     private String address;
 
+    private AccidentType type;
+
     public Accident() {
     }
 
-    public Accident(int id, String name, String text, String address) {
+    public Accident(int id, String name, String text, String address, AccidentType type) {
         this.id = id;
         this.name = name;
         this.text = text;
         this.address = address;
+        this.type = type;
     }
 
     public int getId() {
@@ -53,6 +56,14 @@ public class Accident {
         this.address = address;
     }
 
+    public AccidentType getType() {
+        return type;
+    }
+
+    public void setType(AccidentType type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -65,11 +76,12 @@ public class Accident {
         return getId() == accident.getId() && Objects.equals(getName(),
                 accident.getName()) && Objects.equals(getText(),
                 accident.getText()) && Objects.equals(getAddress(),
-                accident.getAddress());
+                accident.getAddress()) && Objects.equals(getType(),
+                accident.getType());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getText(), getAddress());
+        return Objects.hash(getId(), getName(), getText(), getAddress(), getType());
     }
 }

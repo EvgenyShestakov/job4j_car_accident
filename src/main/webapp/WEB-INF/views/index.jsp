@@ -35,6 +35,7 @@
                     <thead>
                     <tr>
                         <th scope="col">Имя</th>
+                        <th scope="col">Тип</th>
                         <th scope="col">Описание</th>
                         <th scope="col">Адрес</th>
                     </tr>
@@ -45,7 +46,10 @@
                                 <a href='<c:url value="/edit?id=${accident.id}"/>'>
                                     <i class="fa fa-edit mr-3"></i>
                                 </a>
-                                 <c:out value="${accident.name}"/>
+                                <c:out value="${accident.name}"/>
+                            </td>
+                            <td>
+                                <c:out value="${accident.type.name}"/>
                             </td>
                             <td>
                                 <c:out value="${accident.text}"/>
