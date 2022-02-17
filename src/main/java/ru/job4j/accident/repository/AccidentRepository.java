@@ -2,7 +2,7 @@ package ru.job4j.accident.repository;
 
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
-
+import ru.job4j.accident.model.Rule;
 import java.util.Collection;
 
 public interface AccidentRepository {
@@ -10,7 +10,9 @@ public interface AccidentRepository {
 
     Collection<AccidentType> findAllAccidentTypes();
 
-    void create(Accident accident);
+    Collection<Rule> findAllRules();
+
+    void create(Accident accident, String[] ids);
 
     Accident findAccidentById(int id);
 }
