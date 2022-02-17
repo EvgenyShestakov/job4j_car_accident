@@ -5,15 +5,17 @@ import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AccidentMem implements AccidentRepository {
-    private final HashMap<Integer, Accident> accidents = new HashMap<>();
-    private final HashMap<Integer, AccidentType> types = new HashMap<>();
-    private int index = 4;
+    private static final AtomicInteger ACCIDENT_ID = new AtomicInteger(4);
+    private final Map<Integer, Accident> accidents = new ConcurrentHashMap<>();
+    private final Map<Integer, AccidentType> types = new ConcurrentHashMap<>();
 
-    {
+    public AccidentMem() {
         types.put(1, AccidentType.of(1, "Две машины"));
         types.put(2, AccidentType.of(2, "Машина и человек"));
         types.put(3, AccidentType.of(3, "Машина и велосипед"));
@@ -35,7 +37,7 @@ public class AccidentMem implements AccidentRepository {
     @Override
     public void create(Accident accident) {
         if (accident.getId() == 0) {
-            int id = index++;
+            int id = ACCIDENT_ID.incrementAndGet();
             accident.setId(id);
             addTypeName(accident);
             accidents.put(id, accident);
