@@ -1,5 +1,6 @@
 package ru.job4j.accident.service;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
@@ -11,7 +12,7 @@ import java.util.Collection;
 public class AccidentServiceImpl implements AccidentService {
     private final AccidentRepository repository;
 
-    public AccidentServiceImpl(AccidentRepository repository) {
+    public AccidentServiceImpl(@Qualifier("accidentJdbcTemplate")AccidentRepository repository) {
         this.repository = repository;
     }
 
@@ -31,12 +32,17 @@ public class AccidentServiceImpl implements AccidentService {
     }
 
     @Override
-    public void create(Accident accident, String[] ids) {
-        repository.create(accident, ids);
+    public void save(Accident accident, String[] ids) {
+        repository.save(accident, ids);
     }
 
     @Override
     public Accident findAccidentById(int id) {
         return repository.findAccidentById(id);
+    }
+
+    @Override
+    public Rule findRuleById(int id) {
+        return repository.findRuleById(id);
     }
 }

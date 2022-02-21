@@ -12,7 +12,9 @@ public interface AccidentRepository {
 
     Collection<Rule> findAllRules();
 
-    void create(Accident accident, String[] ids);
+    void save(Accident accident, String[] ids);
 
     Accident findAccidentById(int id);
+
+    Rule findRuleById(int id);
 }

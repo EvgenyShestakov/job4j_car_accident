@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.service.AccidentService;
-
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -35,7 +34,7 @@ public class AccidentControl {
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
         String[] ids = req.getParameterValues("rIds");
         if (ids != null) {
-            service.create(accident, ids);
+            service.save(accident, ids);
         }
         return "redirect:/";
     }

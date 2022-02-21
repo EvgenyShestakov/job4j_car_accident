@@ -47,7 +47,7 @@ public class AccidentMem implements AccidentRepository {
     }
 
     @Override
-    public void create(Accident accident, String[] ids) {
+    public void save(Accident accident, String[] ids) {
         if (accident.getId() == 0) {
             int id = ACCIDENT_ID.incrementAndGet();
             accident.setId(id);
@@ -78,5 +78,10 @@ public class AccidentMem implements AccidentRepository {
     @Override
     public Accident findAccidentById(int id) {
         return accidents.get(id);
+    }
+
+    @Override
+    public Rule findRuleById(int id) {
+        return null;
     }
 }
