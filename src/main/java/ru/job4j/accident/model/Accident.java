@@ -1,10 +1,14 @@
 package ru.job4j.accident.model;
 
-import java.util.HashSet;
+import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
+@Entity
+@Table(name = "accident")
 public class Accident {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
@@ -13,8 +17,15 @@ public class Accident {
 
     private String address;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.REFRESH})
+    @JoinColumn(name = "accident_type_id")
     private AccidentType type;
 
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.REFRESH})
+    @JoinTable(name = "accident_rule", joinColumns = @JoinColumn(name = "accident_id"),
+            inverseJoinColumns = @JoinColumn(name = "rule_id"))
     private Set<Rule> rules;
 
     public Accident() {

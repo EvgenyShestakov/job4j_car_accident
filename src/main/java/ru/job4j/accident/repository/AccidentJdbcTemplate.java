@@ -87,7 +87,7 @@ public class AccidentJdbcTemplate implements AccidentRepository {
 
     @Override
     public void save(Accident accident, String[] ids) {
-       accident.setRules(addRules(ids));
+        accident.setRules(addRules(ids));
         if (accident.getId() == 0) {
             create(accident);
         } else {
@@ -97,16 +97,16 @@ public class AccidentJdbcTemplate implements AccidentRepository {
 
     private void create(Accident accident) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-       jdbc.update(con -> {
-                   PreparedStatement ps = con.prepareStatement("insert into"
-                           + " accident(name, text, address, accident_type_id)"
-                           + " values ((?), (?), (?), (?))", new String[] {"id"});
-       ps.setString(1, accident.getName());
-       ps.setString(2, accident.getText());
-       ps.setString(3, accident.getAddress());
-       ps.setInt(4, accident.getType().getId());
-       return ps;
-       }, keyHolder);
+        jdbc.update(con -> {
+            PreparedStatement ps = con.prepareStatement("insert into"
+                    + " accident(name, text, address, accident_type_id)"
+                    + " values ((?), (?), (?), (?))", new String[] {"id"});
+            ps.setString(1, accident.getName());
+            ps.setString(2, accident.getText());
+            ps.setString(3, accident.getAddress());
+            ps.setInt(4, accident.getType().getId());
+            return ps;
+        }, keyHolder);
         accident.setId(keyHolder.getKey().intValue());
         insertLinkTable(accident);
     }
