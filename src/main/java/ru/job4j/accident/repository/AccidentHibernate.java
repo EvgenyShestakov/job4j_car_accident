@@ -1,13 +1,14 @@
 package ru.job4j.accident.repository;
 
 import org.hibernate.Transaction;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
 import java.util.Collection;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.stereotype.Repository;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;

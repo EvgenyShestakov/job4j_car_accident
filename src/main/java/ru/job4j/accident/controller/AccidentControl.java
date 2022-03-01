@@ -1,5 +1,6 @@
 package ru.job4j.accident.controller;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 public class AccidentControl {
     private final AccidentService service;
 
-    public AccidentControl(AccidentService service) {
+    public AccidentControl(@Qualifier("crudService") AccidentService service) {
         this.service = service;
     }
 
@@ -33,6 +34,9 @@ public class AccidentControl {
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
         String[] ids = req.getParameterValues("rIds");
+        String s = accident.getType().getName();
+        int id = accident.getId();
+        Accident accident1 = accident;
         if (ids != null) {
             service.save(accident, ids);
         }

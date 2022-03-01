@@ -6,7 +6,7 @@ import ru.job4j.accident.model.Rule;
 import java.util.Collection;
 
 public interface AccidentService {
-    Collection<Accident> findAllAccidents();
+    Iterable<Accident> findAllAccidents();
 
     Collection<AccidentType> findAllAccidentTypes();
 

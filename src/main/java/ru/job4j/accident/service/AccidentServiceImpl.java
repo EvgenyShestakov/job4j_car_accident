@@ -12,12 +12,12 @@ import java.util.Collection;
 public class AccidentServiceImpl implements AccidentService {
     private final AccidentRepository repository;
 
-    public AccidentServiceImpl(@Qualifier("accidentHibernate")AccidentRepository repository) {
+    public AccidentServiceImpl(@Qualifier("accidentJdbcTemplate")AccidentRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public Collection<Accident> findAllAccidents() {
+    public Iterable<Accident> findAllAccidents() {
         return repository.findAllAccidents();
     }
 
