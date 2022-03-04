@@ -30,7 +30,14 @@
                 Accident
             </div>
             <div class="card-body">
-                <a href="<c:url value='/create'/>">Добавить инцидент</a>
+                <div class="row">
+                    <div>
+                        <a href="<c:url value='/create'/>">Добавить инцидент</a>
+                    </div>
+                    <div>
+                        Login as : ${user.username}
+                    </div>
+                </div>
                 <table class="table">
                     <thead>
                     <tr>

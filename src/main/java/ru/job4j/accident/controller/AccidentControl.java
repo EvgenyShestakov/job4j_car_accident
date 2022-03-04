@@ -34,9 +34,6 @@ public class AccidentControl {
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
         String[] ids = req.getParameterValues("rIds");
-        String s = accident.getType().getName();
-        int id = accident.getId();
-        Accident accident1 = accident;
         if (ids != null) {
             service.save(accident, ids);
         }
