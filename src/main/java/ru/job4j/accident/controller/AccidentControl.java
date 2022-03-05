@@ -1,6 +1,7 @@
 package ru.job4j.accident.controller;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,8 @@ public class AccidentControl {
 
     @GetMapping("/create")
     public String create(Model model) {
+        model.addAttribute("user", SecurityContextHolder.getContext().
+                getAuthentication().getPrincipal());
         model.addAttribute("types", service.findAllAccidentTypes());
         model.addAttribute("rules", service.findAllRules());
         return "accident/create";
@@ -25,6 +28,8 @@ public class AccidentControl {
 
     @GetMapping("/edit")
     public String edit(@RequestParam("id") int id, Model model) {
+        model.addAttribute("user", SecurityContextHolder.getContext().
+                getAuthentication().getPrincipal());
         model.addAttribute("types", service.findAllAccidentTypes());
         model.addAttribute("rules", service.findAllRules());
         model.addAttribute("accident", service.findAccidentById(id));

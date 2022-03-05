@@ -1,13 +1,10 @@
 package ru.job4j.accident.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.job4j.accident.model.Accident;
-import ru.job4j.accident.model.AccidentType;
-import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentCrudRepository;
-import ru.job4j.accident.repository.AccidentTypeCrudRepository;
-import ru.job4j.accident.repository.RuleCrudRepository;
+import ru.job4j.accident.model.*;
+import ru.job4j.accident.repository.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,12 +20,22 @@ public class CrudService implements AccidentService {
 
     private final RuleCrudRepository rulRep;
 
+    private final AuthorityRepository authRep;
+
+    private final UserRepository userRep;
+
+    private final PasswordEncoder encoder;
+
     public CrudService(AccidentCrudRepository acRep,
                        AccidentTypeCrudRepository actRep,
-                       RuleCrudRepository rulRep) {
+                       RuleCrudRepository rulRep, AuthorityRepository authRep,
+                       UserRepository userRep, PasswordEncoder encoder) {
         this.acRep = acRep;
         this.actRep = actRep;
         this.rulRep = rulRep;
+        this.authRep = authRep;
+        this.userRep = userRep;
+        this.encoder = encoder;
     }
 
     @Override
@@ -62,6 +69,11 @@ public class CrudService implements AccidentService {
     }
 
     @Override
+    public void save(User user) {
+        userRep.save(user);
+    }
+
+    @Override
     public Accident findAccidentById(int id) {
         return acRep.findById(id).get();
     }
@@ -69,5 +81,20 @@ public class CrudService implements AccidentService {
     @Override
     public Rule findRuleById(int id) {
         return rulRep.findById(id).get();
+    }
+
+    @Override
+    public Authority findByAuthority(String authority) {
+        return authRep.findByAuthority(authority);
+    }
+
+    @Override
+    public User findUserByName(String name) {
+        return userRep.findByUsername(name);
+    }
+
+    @Override
+    public PasswordEncoder getEncoder() {
+        return encoder;
     }
 }

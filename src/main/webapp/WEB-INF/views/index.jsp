@@ -34,6 +34,19 @@
                     <div>
                         <a href="<c:url value='/create'/>">Добавить инцидент</a>
                     </div>
+                    <div style="padding: 10px;"></div>
+                    <div>
+                        <a href="<c:url value='/reg'/>">Регистрация</a>
+                    </div>
+                    <div style="padding: 10px;"></div>
+                    <div>
+                        <a href='<c:url value="/login"/>'>Войти</a>
+                    </div>
+                    <div style="padding: 10px;"></div>
+                    <div>
+                        <a href='<c:url value="/logout"/>'>Выйти</a>
+                    </div>
+                    <div style="padding: 10px;"></div>
                     <div>
                         Login as : ${user.username}
                     </div>

@@ -21,6 +21,11 @@
 </head>
 <body>
 <div class="container pt-3">
+    <div class="row">
+        <div>
+            Login as : ${user.username}
+        </div>
+    </div>
     <form action="<c:url value='/save?id=${accident.id}'/>" method='POST'>
         <table>
             <tr>
