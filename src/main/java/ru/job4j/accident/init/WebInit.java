@@ -12,6 +12,7 @@ import javax.servlet.ServletRegistration;
 
 public class WebInit implements WebApplicationInitializer {
     public void onStartup(ServletContext servletCxt) {
+        System.setProperty("spring.profiles.active", "data");
         AnnotationConfigWebApplicationContext ac = new AnnotationConfigWebApplicationContext();
         ac.register(WebConfig.class, DataConfig.class, SecurityConfig.class, JdbcConfig.class);
         ac.refresh();

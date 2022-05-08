@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+@Profile("data")
 @Configuration
 @PropertySource("classpath:app.properties")
 @EnableJpaRepositories("ru.job4j.accident.repository")
